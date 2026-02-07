@@ -1,2 +1,95 @@
-<h1>Welcome to My GitHub Pages</h1>
-<p>This is a simple example of a GitHub Pages site.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Days of Love</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(0, 0, 0, .1));
+            backdrop-filter: blur(10px);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            border-radius: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        h1 { text-align: center; }
+        .day-card {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin: 20px 0;
+            border-radius: 10px;
+            padding: 10px;
+            transition: transform 0.2s;
+        }
+        .day-card:hover {
+            transform: scale(1.05);
+        }
+        .countdown {
+            font-size: 24px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>8 Days of Love</h1>
+        <div id="countdown" class="countdown">Countdown: <span id="timer"></span></div>
+        <div class="day-card">
+            <h2>Day 1: Romantic Message</h2>
+            <p>Welcome to the first day of love!</p>
+        </div>
+        <!-- Repeat day-card for 8 days -->
+        <div class="button-container">
+            <button onclick="generateQRCode()">Generate QR Code</button>
+            <button onclick="shareFunctionality()">Share</button>
+        </div>
+    </div>
+    <script>
+        // Countdown Timer Functionality
+        let targetDate = new Date('2026-02-15T00:00:00Z');  // Set your target date
+        function updateCountdown() {
+            let now = new Date();
+            let remainingTime = targetDate - now;
+            let days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('timer').innerText = days + 'd ' + hours + 'h ' + minutes + 'm';
+            if (remainingTime < 0) {
+                clearInterval(interval);
+                document.getElementById('countdown').innerText = 'Countdown finished!';
+            }
+        }
+        let interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // QR Code Generation Functionality
+        function generateQRCode() {
+            // QR Code generation logic goes here
+            alert('QR Code generation is not implemented yet.');
+        }
+
+        // Share Functionality
+        function shareFunctionality() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '8 Days of Love',
+                    text: 'Check out this lovely website!',
+                    url: window.location.href,
+                }).catch(console.error);
+            } else {
+                alert('Share functionality is not supported in your browser.');
+            }
+        }
+    </script>
+</body>
+</html>
